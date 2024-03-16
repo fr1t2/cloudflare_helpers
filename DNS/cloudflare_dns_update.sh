@@ -20,8 +20,11 @@ check_dependencies() {
 # Check for required dependencies
 check_dependencies
 
-# Set the path to the secrets file
-secrets_file="./secrets.txt"  # Adjust the path as needed
+# Get the directory of the script
+script_dir=$(dirname "$(readlink -f "$0")")
+
+# Define the path to the secrets file
+secrets_file="$script_dir/secrets.txt"
 
 # Check if the secrets file exists
 if [[ ! -f "$secrets_file" ]]; then
