@@ -9,12 +9,24 @@ log() {
     echo "[$timestamp] $1"
 }
 
-# Function to check for updates from GitHub repository
-check_for_updates() {
-    # Define the GitHub repository owner and name
-    repo_owner="your_username"
-    repo_name="your_repository"
+# Get the directory of the script
+script_dir=$(dirname "$(readlink -f "$0")")
 
+# Define the path to the secrets file
+secrets_file="$script_dir/secrets.txt"
+
+# Check if the secrets file exists
+if [[ ! -f "$secrets_file" ]]; then
+    log "Error: Secrets file not found: $secrets_file"
+    exit 1
+fi
+
+# Source the secrets file
+source "$secrets_file"
+
+# Function to check for updates from GitHub repository
+
+check_for_updates() {
     # Define the branch to check for updates
     branch="main"
 
@@ -37,8 +49,12 @@ check_for_updates() {
     fi
 }
 
-# Run the function to check for updates
-check_for_updates
+
+if [[ "$AUTO_UPDATE" == "true" ]]; then
+        # Run the function to check for updates
+        check_for_updates
+fi
+
 
 # Check if required commands are available
 check_dependencies() {
@@ -50,21 +66,6 @@ check_dependencies() {
 
 # Check for required dependencies
 check_dependencies
-
-# Get the directory of the script
-script_dir=$(dirname "$(readlink -f "$0")")
-
-# Define the path to the secrets file
-secrets_file="$script_dir/secrets.txt"
-
-# Check if the secrets file exists
-if [[ ! -f "$secrets_file" ]]; then
-    log "Error: Secrets file not found: $secrets_file"
-    exit 1
-fi
-
-# Source the secrets file
-source "$secrets_file"
 
 set -e
 

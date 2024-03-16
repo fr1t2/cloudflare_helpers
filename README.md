@@ -39,6 +39,8 @@ Add the script to the crontab folder with the following (edit for your location)
 
 `*/10 * * * *	/home/$USER/cloudflare_helpers/ZeroTrust/zeroTrust_gateway_ip_updates.sh`
 
+> **Note** This script updates every thime it runs to pickup any changes here in this repo.
+
 
 ## DNS Record Update
 
