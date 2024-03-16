@@ -22,7 +22,7 @@ check_dependencies() {
 check_dependencies
 
 # Set the path to the secrets file
-secrets_file="../secrets.txt"  # Adjust the path as needed
+secrets_file="./secrets.txt"  # Adjust the path as needed
 
 # Check if the secrets file exists
 if [[ ! -f "$secrets_file" ]]; then
