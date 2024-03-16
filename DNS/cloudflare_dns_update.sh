@@ -9,6 +9,37 @@ log() {
     echo "[$timestamp] $1"
 }
 
+# Function to check for updates from GitHub repository
+check_for_updates() {
+    # Define the GitHub repository owner and name
+    repo_owner="your_username"
+    repo_name="your_repository"
+
+    # Define the branch to check for updates
+    branch="main"
+
+    # Log message indicating the start of update check
+    log "Checking for updates..."
+
+    # Navigate to the GitHub repository directory
+    cd "$(dirname "${BASH_SOURCE[0]}")"
+
+    # Fetch the latest changes from the remote repository
+    git fetch origin "$branch"
+
+    # Check if there are any changes
+    if git diff --quiet HEAD "origin/$branch"; then
+        log "No updates available."
+    else
+        log "Updates found. Pulling changes..."
+        # Pull the latest changes from the remote repository
+        git pull origin "$branch"
+    fi
+}
+
+# Run the function to check for updates
+check_for_updates
+
 # Check if required commands are available
 check_dependencies() {
     if ! command -v jq &>/dev/null; then
