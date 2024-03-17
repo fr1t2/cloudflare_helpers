@@ -37,7 +37,7 @@ If everything is done, test the script. It should find the gateway DNS location 
 
 Add the script to the crontab folder with the following (edit for your location). This runs every 10 min.
 
-`*/10 * * * *	/home/$USER/cloudflare_helpers/ZeroTrust/zeroTrust_gateway_ip_updates.sh`
+`*/10 * * * *	/home/$USER/cloudflare_helpers/ZeroTrust/zeroTrust_gateway_ip_update.sh`
 
 > **Note** This script updates every thime it runs to pickup any changes here in this repo.
 
